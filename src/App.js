@@ -12,8 +12,8 @@ function App() {
   {
     let temp = tasks;
     temp.push(text);
-    setTasks(tasks);
-    console.log(tasks);
+    setTasks(temp);
+    console.log(temp);
   }
 
   return (
