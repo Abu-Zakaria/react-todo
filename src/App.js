@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Header from './component/Header.js';
+import PostBox from './component/PostBox.js';
 
 function App() {
+  let [tasks, setTasks] = useState(
+      ['asdas', 'asda']
+    );
+
+  let addTaskHandler = function(text)
+  {
+    let temp = tasks;
+    temp.push(text);
+    setTasks(tasks);
+    console.log(tasks);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <PostBox addHandler={addTaskHandler}/>
+      {
+        tasks.map((task, index) => {
+          return (
+            <div className="task" key={ index }>
+              <p>{ task }</p>
+            </div>
+            )
+        })
+      }
+
     </div>
   );
 }
