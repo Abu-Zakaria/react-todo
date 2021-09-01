@@ -2,7 +2,7 @@ function Header()
 {
 	return (
 			<div>
-				Header
+				React-todo
 			</div>
 		)
 }

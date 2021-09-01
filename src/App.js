@@ -2,18 +2,23 @@ import './App.css';
 import { useState } from 'react';
 import Header from './component/Header.js';
 import PostBox from './component/PostBox.js';
+import Task from './component/Task.js';
 
 function App() {
-  let [tasks, setTasks] = useState(
-      ['asdas', 'asda']
-    );
+  let [tasks, setTasks] = useState([]);
 
   let addTaskHandler = function(text)
   {
-    let temp = tasks;
-    temp.push(text);
-    setTasks(temp);
-    console.log(temp);
+    setTasks(prev => ([...prev, text]));
+    console.log(tasks);
+  }
+
+  let deleteTaskHandler = function(id)
+  {
+    console.log("DELETEING ", id)
+    tasks.splice(id, 1)
+    setTasks(() => ([...tasks]))
+    console.log(tasks)
   }
 
   return (
@@ -24,7 +29,7 @@ function App() {
         tasks.map((task, index) => {
           return (
             <div className="task" key={ index }>
-              <p>{ task }</p>
+              <Task onDeleteHandler={ deleteTaskHandler } name={ task } task_id={ index }  />
             </div>
             )
         })
